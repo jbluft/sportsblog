@@ -1,0 +1,9 @@
+.jumbotron h1, .jumbotron h2 {
+    color: white;
+  }
+  
+.jumbotron h1 {
+    font-size: 30px;
+    /* padding-top: 140px; */
+    margin-top: 0;
+  }
