@@ -1,4 +1,6 @@
 import React from "react";
+import "./Nav.css";
+
 
 const Nav = () => (
   <nav className="navbar navbar-inverse navbar-top">
@@ -9,6 +11,9 @@ const Nav = () => (
           <span className="icon-bar" /> <span className="icon-bar" />
           <span className="icon-bar" />
         </button>
+        <a href="/" className="navbar-brand">
+          Home
+        </a>
         <a href="/" className="navbar-brand">
           Sign Up
         </a>

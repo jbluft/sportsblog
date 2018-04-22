@@ -8,7 +8,6 @@ import { List, ListItem } from "../../components/List";
 import { FormBtn } from "../../components/Form";
 import Hero from "../../components/Hero";
 
-
 class Home extends Component {
 
   state = {
@@ -62,7 +61,7 @@ class Home extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-          <Hero backgroundImage="https://www.belterrapark.com/globalassets/bpc/race/1200x450_racing.jpg">
+          <Hero backgroundImage={ require("./hero_racing.jpg") }>
               <h1>... And They're Off!</h1>
               <h2>Handicapping Horses with Jacob Luft</h2>
           </Hero>
