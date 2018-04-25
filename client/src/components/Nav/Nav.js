@@ -9,7 +9,7 @@ const Nav = () => (
           <span className="icon-bar" /> <span className="icon-bar" />
           <span className="icon-bar" />
         </button>
-        <a href="/" className="navbar-brand">
+        <a href="/register" className="navbar-brand">
           Sign Up
         </a>
         <a href="/archive" className="navbar-brand">
