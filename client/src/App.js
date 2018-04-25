@@ -6,9 +6,11 @@ import Detail from "./pages/Detail";
 import Archive from "./pages/Archive";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+
 
 const App = () => (
-  <Router>
+<Router>
     <div>
       <Nav />
       <Switch>
@@ -19,8 +21,10 @@ const App = () => (
         {/* route to /new/:id  */}
         <Route component={NoMatch} />
       </Switch>
+      <Footer />
     </div>
   </Router>
-);
+
+  );
 
 export default App;

@@ -6,7 +6,9 @@ import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import DeleteBtn from "../../components/DeleteBtn";
 
-class Detail extends Component {
+
+
+class Archive extends Component {
   state = {
     book: {},
     books: [],
@@ -29,9 +31,12 @@ class Detail extends Component {
       .catch(err => console.log(err));
   };
 
+
+
   render() {
+  
     return (
-      <Container fluid>
+    <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -67,4 +72,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail;
+export default Archive;
