@@ -6,7 +6,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-// import Books from "../Books/Books";
+ import Books from "../Books/Books";
 
 
 class Users extends Component {
@@ -22,7 +22,8 @@ class Users extends Component {
                 username: this.state.username,
                 password: this.state.password
             })
-                // .then(res => this.loadBooks())
+              
+
                 .catch(err => console.log(err));
         }
     };
@@ -62,3 +63,4 @@ class Users extends Component {
     }
 }
 export default Users; 
+
