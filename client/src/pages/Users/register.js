@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
+// import DeleteBtn from "../../components/DeleteBtn";
+// import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
-import Books from "../Books/Books";
+// import { List, ListItem } from "../../components/List";
+import { Input, FormBtn } from "../../components/Form";
+ import Books from "../Books/Books";
 
 
 class Users extends Component {
@@ -20,10 +20,10 @@ class Users extends Component {
         if (this.state.username && this.state.password) {
             API.saveUser({
                 username: this.state.username,
-                author: this.state.author,
-                synopsis: this.state.synopsis
+                password: this.state.password
             })
-                .then(res => this.loadBooks())
+              
+
                 .catch(err => console.log(err));
         }
     };
@@ -62,4 +62,5 @@ class Users extends Component {
         );
     }
 }
-export default Users;
+export default Users; 
+

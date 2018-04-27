@@ -12,6 +12,7 @@ class Detail extends Component {
     books: [],
     title: "",
     author: "",
+    date: ""
   };
 
 
@@ -32,6 +33,7 @@ class Detail extends Component {
       .catch(err => console.log(err));
   };
 
+
   render() {
     return (
       <Container fluid>
@@ -49,6 +51,9 @@ class Detail extends Component {
             <article>
               <h1>{this.state.book.title}</h1>
               <p>
+                By {this.state.book.author} ({ this.state.book.date })
+              </p>
+              <p>
                 {this.state.book.synopsis}
               </p>
             </article>
@@ -61,7 +66,7 @@ class Detail extends Component {
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                    <Link to={"/books/" + book._id} target="_blank">
                       <strong>
                         {book.title} by {book.author}
                       </strong>

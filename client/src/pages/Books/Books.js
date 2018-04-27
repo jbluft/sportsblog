@@ -13,7 +13,8 @@ class Books extends Component {
     books: [],
     title: "",
     author: "",
-    synopsis: ""
+    synopsis: "",
+    track: ""
   };
 
   componentDidMount() {
@@ -47,7 +48,8 @@ class Books extends Component {
       API.saveBook({
         title: this.state.title,
         author: this.state.author,
-        synopsis: this.state.synopsis
+        synopsis: this.state.synopsis,
+        track: this.state.track
       })
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
@@ -73,6 +75,12 @@ class Books extends Component {
                 name="author"
                 placeholder="Author (required)"
               />
+              <Input
+                value={this.state.track}
+                onChange={this.handleInputChange}
+                name="track"
+                placeholder="Track"
+              />
               <TextArea
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
@@ -97,7 +105,7 @@ class Books extends Component {
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {book.title} by {book.author} ({book.track})
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
