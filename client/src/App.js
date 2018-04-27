@@ -8,6 +8,10 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
+//adding import to users
+import Users from "./pages/Users";
+
+
 
 const App = () => (
 <Router>
@@ -18,8 +22,9 @@ const App = () => (
         <Route exact path="/archive" component={Archive} />
         <Route exact path="/books" component={Books} />
         <Route exact path="/books/:id" component={Detail} />
-        {/* route to /new/:id  */}
         <Route component={NoMatch} />
+        {/* adding new route */}
+        <Route exact path="/register" component={Users} />
       </Switch>
       <Footer />
     </div>
