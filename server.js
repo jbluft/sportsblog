@@ -7,14 +7,10 @@ const routes = require("./routes");
 const app = express();
 
 //adding passport
-let session = require('express-session');
-const passport = require('passport');
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose   = require("passport-local-mongoose")
 
 const PORT = process.env.PORT || 5000;
-const LocalStrategy = require("passport-local");
-const passportLocalMongoose   = require("passport-local-mongoose")
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,13 +35,4 @@ app.use(session({
 
 // Start the API server
 app.listen(PORT, function() {console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-
-app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: false
-}));
-    app.use(passport.initialize());
-    app.use(passport.session());
-
 });
