@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 
 class Register extends Component {
     state = {
-
         username: "",
         password: ""
     };
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
+
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.username && this.state.password) {
@@ -24,10 +33,12 @@ class Register extends Component {
     };
     render() {
         return (
+        <MuiThemeProvider>
             <Container fluid>
         <Row>
         <Col size="md-6">
-            <h1>Register</h1>
+        <Paper zDepth={1} style={{ marginTop: 75, padding: 10, display: 'grid' }} >
+        <h1>Register</h1>
         <form>
         <Input
         value={this.state.username}
@@ -49,10 +60,12 @@ class Register extends Component {
         Submit User
         </FormBtn>
         </form>
+        </Paper>
         </Col>
 
         </Row>
         </Container>
+        </MuiThemeProvider>
 
         );
     }

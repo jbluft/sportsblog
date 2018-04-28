@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { List, ListItem } from "../../components/List";
 import DeleteBtn from "../../components/DeleteBtn";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+import Paper from 'material-ui/Paper';
 
 
 
 class Archive extends Component {
   state = {
-    book: {},
     books: [],
     title: "",
     author: "",
+    synopsis: "",
+    track: ""
   };
 
 
@@ -26,7 +30,7 @@ class Archive extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -36,12 +40,33 @@ class Archive extends Component {
   render() {
   
     return (
+    <MuiThemeProvider>
     <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
-              <p>Latest Horse Picks</p>
-            </Jumbotron>
+       <Paper zDepth={1} style={{ marginTop: 75, padding: 10, display: 'grid' }} >
+       <p>Latest Horse Picks</p>
+            {this.state.books.length ? (
+              <List>
+                {this.state.books.map(book => (
+                  <ListItem key={book._id}>
+                    <Link to={"/books/" + book._id}>
+                      <strong>
+                        {book.title} by {book.author} ({book.track})
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+            </Paper>
+            </Col>
+            <Col size="md-6">
+       <Paper zDepth={1} style={{ marginTop: 75, padding: 10, display: 'grid' }} >
+       <p>Latest Horse Picks</p>
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
@@ -58,16 +83,13 @@ class Archive extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+            </Paper>
             </Col>
-        <Col size="md-6">
-            <Jumbotron>
-              <p>Latest Sports Picks</p>
-            </Jumbotron>
-              <h3>No Results to Display</h3>
-        </Col>
 
         </Row>
       </Container>
+      </MuiThemeProvider>
+
     );
   }
 }

@@ -130,7 +130,7 @@ class Home extends Component {
           <CardMedia style={{ marginTop: 75 }}
             overlay={<CardTitle title="It's Kentucky Derby Time" subtitle="Are You Ready For The Run For The Roses? Click here to find out" />}
     >
-            <img src={ require("./hero_racing.jpg") } style={{ height: 400 }} alt="" />
+            <img src={ require("./hero_racing.jpg") } alt="" />
             </CardMedia></Link>
           </Col>
         </Row>

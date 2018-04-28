@@ -1,2 +1,1 @@
-
-export { default } from "./register.js";
+export { default } from "./register";
