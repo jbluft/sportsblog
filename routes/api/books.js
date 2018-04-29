@@ -13,4 +13,8 @@ router
   .put(booksController.update)
   .delete(booksController.remove);
 
+  router
+  .route('/track/:track')
+  .get(booksController.findByTrack);
+
 module.exports = router;

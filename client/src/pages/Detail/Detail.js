@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
-import DeleteBtn from "../../components/DeleteBtn";
+import AllPicks from "../../components/AllPicks";
 
 class Detail extends Component {
   state = {
@@ -12,7 +10,8 @@ class Detail extends Component {
     books: [],
     title: "",
     author: "",
-    date: ""
+    fullSynopsis: "",
+    track: ""
   };
 
 
@@ -28,7 +27,7 @@ class Detail extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "", author: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -38,20 +37,15 @@ class Detail extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.book.title} by {this.state.book.author}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
           <Col size="md-8">
             <article>
               <h1>{this.state.book.title}</h1>
               <p>
-                By {this.state.book.author} ({ this.state.book.date })
+                Track: <strong>{this.state.book.track}</strong>
+
+              </p>
+              <p>
+                By {this.state.book.author}
               </p>
               <p>
                 {this.state.book.synopsis}
@@ -59,30 +53,14 @@ class Detail extends Component {
             </article>
           </Col>
           <Col size="md-4">
-            <Jumbotron>
-              <p>Latest Horse Picks</p>
-            </Jumbotron>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id} target="_blank">
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+
+          <AllPicks />
+
             </Col>
         </Row>
         <Row>
           <Col size="md-12">
-            <Link to="/">← Back to Authors</Link>
+            <Link to="/archive">← Back to Picks</Link>
           </Col>
         </Row>
       </Container>

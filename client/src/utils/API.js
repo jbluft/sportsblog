@@ -18,6 +18,10 @@ export default {
     return axios.post("/api/books", bookData);
   },
 
+  getTrackStories: function(track){
+    return axios.get("/api/books/track/" + track);
+  },
+
   // Gets all users
   getUsers: function() {
     return axios.get("/api/users");
@@ -55,7 +59,6 @@ export default {
   saveNote: function(noteData) {
     return axios.post("/api/notes", noteData);
   },
-
   getTrackNotes: function(track){
     return axios.get("/api/notes/track/" + track);
   }

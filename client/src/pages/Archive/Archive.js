@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
-// import DeleteBtn from "../../components/DeleteBtn";
-import TrackNotes from "../../components/TrackNotes";
-
+import TrackStories from "../../components/TrackStories";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Paper from 'material-ui/Paper';
+
+import AllPicks from "../../components/AllPicks";
 
 
 class Archive extends Component {
@@ -42,28 +39,19 @@ class Archive extends Component {
     <MuiThemeProvider>
     <Container fluid>
         <Row>
-          <Col size="md-6">
-       <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
-       <p>Latest Horse Picks</p>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author} ({book.track})
-                      </strong>
-                    </Link>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            </Paper>
-            </Col>
+          <Col size="md-8">
 
-            <TrackNotes track="gulfstream"/>
+          <AllPicks />
+          
+            </Col>
+            <Col size="md-4">
+
+            <TrackStories track="gulfstream"/>
+            <TrackStories track="churchill"/>
+            <TrackStories track="belmont"/>
+            <TrackStories track="keeneland"/>
+            <TrackStories track="santaanita"/>
+            </Col>
 
 
         </Row>

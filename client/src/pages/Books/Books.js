@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -14,6 +12,7 @@ class Books extends Component {
     title: "",
     author: "",
     synopsis: "",
+    fullSynopsis: "",
     track: ""
   };
 
@@ -24,7 +23,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -49,6 +48,7 @@ class Books extends Component {
         title: this.state.title,
         author: this.state.author,
         synopsis: this.state.synopsis,
+        fullSynopsis: this.state.fullSynopsis,
         track: this.state.track
       })
         .then(res => this.loadBooks())
@@ -81,12 +81,19 @@ class Books extends Component {
                 name="track"
                 placeholder="Track"
               />
-              <TextArea
+              <Input
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
                 placeholder="Synopsis (Optional)"
               />
+              <TextArea
+                value={this.state.fullSynopsis}
+                onChange={this.handleInputChange}
+                name="fullSynopsis"
+                placeholder="fullSynopsis (Optional)"
+              />
+
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
@@ -96,19 +103,22 @@ class Books extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
+          <h1>All Picks</h1>
+
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} by {book.author} ({book.track})
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                        {book.title} by {book.author}
+                      </strong><br />
+                      </Link>
+                      Track: <strong>{book.track}</strong>
+                      <br />
+                      {book.synopsis}... <Link to={"/books/" + book._id} target="_blank">
+(Click here for full story)</Link>
+
                   </ListItem>
                 ))}
               </List>

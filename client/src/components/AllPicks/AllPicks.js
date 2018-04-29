@@ -15,6 +15,8 @@ class AllPicks extends Component {
     title: "",
     author: "",
     synopsis: "",
+    fullSynopsis: "",
+    track: "",
     open: false,
   };
 
@@ -26,7 +28,7 @@ class AllPicks extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -41,18 +43,24 @@ class AllPicks extends Component {
       <Container fluid>
         <Row>
         <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
-              <h1>Latest Horse Picks</h1>
-            {this.state.books.length ? (
+              <h1>Horse Racing Picks</h1>
+              {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id} target="_blank">
+                    <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
+                        {book.title}
+                      </strong><br />
+                      </Link>
+                      Track: <strong>{book.track}</strong>
+                      <br />
+                      {book.synopsis}... <Link to={"/books/" + book._id} target="_blank">
+(Click here for full story)</Link>
+
                   </ListItem>
-                ))}
+                ))}                <br />
+                <Link to={"/archive/"} target="_blank"> See All Picks</Link>
               </List>
             ) : (
               <h3>No Results to Display</h3>

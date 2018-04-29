@@ -64,16 +64,18 @@ class AllNotes extends Component {
         <Row>
           <MuiThemeProvider>
           <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
-          <h1>All Horse Notes</h1>
+          <h1>Horse Notes</h1>
             {this.state.notes.length ? (
               <List>
                 {this.state.notes.map(note => (
                   <ListItem key={note._id}>
                     <Link to={"/notes/" + note._id} target="_blank">
                       <strong>
-                        {note.horse} by {note.author} ({note.track})
+                        {note.horse}
                        </strong>
                        </Link>
+                       <br />
+                       Track: <strong>{note.track}</strong>
                        <br />
                        {note.synopsis}... <Link to={"/notes/" + note._id} target="_blank">
 (Click here for full story)</Link>

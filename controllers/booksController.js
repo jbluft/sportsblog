@@ -36,8 +36,8 @@ module.exports = {
   },
   findByTrack: function(req, res) {
     db.Book
-      .findByTrack(req.params.track)
+      .find({track: req.params.track})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
+  }
 };

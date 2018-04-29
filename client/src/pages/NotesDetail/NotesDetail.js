@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
-import DeleteBtn from "../../components/DeleteBtn";
+import AllNotes from "../../components/AllNotes";
 
 class NotesDetail extends Component {
     state = {
@@ -39,20 +37,16 @@ class NotesDetail extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.note.horse} by {this.state.note.author}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
           <Col size="md-8">
             <article>
               <h1>{this.state.note.horse}</h1>
               <p>
-                By {this.state.note.author} ({ this.state.note.date })
+                Track: <strong>{this.state.note.track}</strong>
+
+              </p>
+
+              <p>
+                By {this.state.note.author}
               </p>
               <p>
                 {this.state.note.synopsis}
@@ -60,25 +54,10 @@ class NotesDetail extends Component {
             </article>
           </Col>
           <Col size="md-4">
-            <Jumbotron>
-              <p>Latest Horse Picks</p>
-            </Jumbotron>
-            {this.state.notes.length ? (
-              <List>
-                {this.state.notes.map(note => (
-                  <ListItem key={note._id}>
-                    <Link to={"/notes/" + note._id} target="_blank">
-                      <strong>
-                        {note.horse} by {note.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteNote(note._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+
+          <AllNotes />
+
+
             </Col>
         </Row>
         <Row>
