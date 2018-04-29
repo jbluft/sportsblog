@@ -33,5 +33,11 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findByTrack: function(req, res) {
+    db.Note
+      .find({track: req.params.track})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

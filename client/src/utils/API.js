@@ -56,5 +56,7 @@ export default {
     return axios.post("/api/notes", noteData);
   },
 
-
+  getTrackNotes: function(track){
+    return axios.get("/api/notes/track/" + track);
+  }
 };

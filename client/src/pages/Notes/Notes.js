@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-
+import AllNotes from "../../components/AllNotes"
 
 class Notes extends Component {
   state = {
@@ -13,6 +11,7 @@ class Notes extends Component {
     horse: "",
     author: "",
     synopsis: "",
+    fullSynopsis: "",
     track: ""
   };
 
@@ -23,7 +22,7 @@ class Notes extends Component {
   loadNotes = () => {
     API.getNotes()
       .then(res =>
-        this.setState({ notes: res.data, horse: "", author: "", synopsis: "", track: "" })
+        this.setState({ notes: res.data, horse: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -48,6 +47,7 @@ class Notes extends Component {
         horse: this.state.horse,
         author: this.state.author,
         synopsis: this.state.synopsis,
+        fullSynopsis: this.state.fullSynopsis,
         track: this.state.track
       })
         .then(res => this.loadNotes())
@@ -80,11 +80,17 @@ class Notes extends Component {
                 name="track"
                 placeholder="Track"
               />
-              <TextArea
+              <Input
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
                 placeholder="Synopsis (Optional)"
+              />
+                <TextArea
+                value={this.state.fullSynopsis}
+                onChange={this.handleInputChange}
+                name="fullSynopsis"
+                placeholder="fullSynopsis (Optional)"
               />
               <FormBtn
                 disabled={!(this.state.horse)}
@@ -93,27 +99,15 @@ class Notes extends Component {
                 Submit Note
               </FormBtn>
             </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Horse Notes</h1>
-            </Jumbotron>
-            {this.state.notes.length ? (
-              <List>
-                {this.state.notes.map(note => (
-                  <ListItem key={note._id}>
-                    <Link to={"/notes/" + note._id}>
-                      <strong>
-                        {note.horse} by {note.author} ({note.track})
-                      </strong>
-                    </Link>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
+
+          <br />
+          <br />
+          <br />
+
+          <AllNotes />
+
+         </Col>
+
 
         </Row>
       </Container>

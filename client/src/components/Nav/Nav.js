@@ -6,7 +6,7 @@ import "./Nav.css";
 const Nav = () => (
 
 
-<nav className="navbar navbar-inverse navbar-fixed-top">
+<nav className="navbar navbar-inverse">
     <div className="container-fluid">
       <div className="navbar-header">
         <button type="button" className="collapsed navbar-toggle">
@@ -22,7 +22,10 @@ const Nav = () => (
           Sign Up
         </a>
         <a href="/archive" className="navbar-brand">
-          View Latest Picks
+          Latest Picks
+        </a>
+        <a href="/notesarchive" className="navbar-brand">
+          Horse Notes
         </a>
       </div>
     </div>

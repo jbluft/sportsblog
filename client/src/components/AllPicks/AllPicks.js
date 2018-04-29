@@ -1,27 +1,24 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
+import { Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-// import DeleteBtn from "../../components/DeleteBtn";
-import TrackNotes from "../../components/TrackNotes";
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 
 
-class Archive extends Component {
+
+class AllPicks extends Component {
+
   state = {
     books: [],
     title: "",
     author: "",
     synopsis: "",
-    track: ""
+    open: false,
   };
 
 
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
     this.loadBooks();
   }
@@ -29,29 +26,29 @@ class Archive extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "", track: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
       )
       .catch(err => console.log(err));
   };
 
 
-
+    
   render() {
-  
+
+    
     return (
-    <MuiThemeProvider>
-    <Container fluid>
+      <MuiThemeProvider>
+      <Container fluid>
         <Row>
-          <Col size="md-6">
-       <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
-       <p>Latest Horse Picks</p>
+        <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
+              <h1>Latest Horse Picks</h1>
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                    <Link to={"/books/" + book._id} target="_blank">
                       <strong>
-                        {book.title} by {book.author} ({book.track})
+                        {book.title} by {book.author}
                       </strong>
                     </Link>
                   </ListItem>
@@ -59,19 +56,15 @@ class Archive extends Component {
               </List>
             ) : (
               <h3>No Results to Display</h3>
-            )}
+            )}          
             </Paper>
-            </Col>
-
-            <TrackNotes track="gulfstream"/>
 
 
-        </Row>
-      </Container>
+      </Row>
+       </Container>
       </MuiThemeProvider>
-
     );
   }
 }
 
-export default Archive;
+export default AllPicks;

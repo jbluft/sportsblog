@@ -13,4 +13,9 @@ router
   .put(notesController.update)
   .delete(notesController.remove);
 
+  //Matches with "/api/notes/track/:track"
+router
+  .route('/track/:track')
+  .get(notesController.findByTrack);
+
 module.exports = router;
