@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
-import DeleteBtn from "../../components/DeleteBtn";
+import TrackStories from "../../components/TrackStories";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class Detail extends Component {
+import AllPicks from "../../components/AllPicks";
+import Subscribe from "../../components/Subscribe";
+
+class Archive extends Component {
   state = {
-    book: {},
     books: [],
     title: "",
     author: "",
+    synopsis: "",
+    track: ""
   };
 
 
@@ -24,47 +26,45 @@ class Detail extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
 
+
+
   render() {
+  
     return (
-      <Container fluid>
+    <MuiThemeProvider>
+    <Container fluid>
         <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <p>Latest Horse Picks</p>
-            </Jumbotron>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+          <Col size="md-8">
+
+          <AllPicks />
+          
             </Col>
-        <Col size="md-6">
-            <Jumbotron>
-              <p>Latest Sports Picks</p>
-            </Jumbotron>
-              <h3>No Results to Display</h3>
-        </Col>
+            <Col size="md-4">
+
+            <MuiThemeProvider>
+            <Subscribe />
+            </MuiThemeProvider>
+            <br />
+
+
+            <TrackStories track="Gulfstream"/>
+            <TrackStories track="Churchill"/>
+            <TrackStories track="Belmont"/>
+            <TrackStories track="SantaAnita"/>
+            </Col>
+
 
         </Row>
       </Container>
+      </MuiThemeProvider>
+
     );
   }
 }
 
-export default Detail;
+export default Archive;

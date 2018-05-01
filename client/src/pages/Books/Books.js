@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -13,7 +11,9 @@ class Books extends Component {
     books: [],
     title: "",
     author: "",
-    synopsis: ""
+    synopsis: "",
+    fullSynopsis: "",
+    track: ""
   };
 
   componentDidMount() {
@@ -23,7 +23,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -47,7 +47,9 @@ class Books extends Component {
       API.saveBook({
         title: this.state.title,
         author: this.state.author,
-        synopsis: this.state.synopsis
+        synopsis: this.state.synopsis,
+        fullSynopsis: this.state.fullSynopsis,
+        track: this.state.track
       })
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
@@ -73,12 +75,25 @@ class Books extends Component {
                 name="author"
                 placeholder="Author (required)"
               />
-              <TextArea
+              <Input
+                value={this.state.track}
+                onChange={this.handleInputChange}
+                name="track"
+                placeholder="Track"
+              />
+              <Input
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
                 placeholder="Synopsis (Optional)"
               />
+              <TextArea
+                value={this.state.fullSynopsis}
+                onChange={this.handleInputChange}
+                name="fullSynopsis"
+                placeholder="fullSynopsis (Optional)"
+              />
+
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
@@ -88,9 +103,8 @@ class Books extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
+          <h1>All Picks</h1>
+
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
@@ -98,9 +112,13 @@ class Books extends Component {
                     <Link to={"/books/" + book._id}>
                       <strong>
                         {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                      </strong><br />
+                      </Link>
+                      Track: <strong>{book.track}</strong>
+                      <br />
+                      {book.synopsis}... <Link to={"/books/" + book._id} target="_blank">
+(Click here for full story)</Link>
+
                   </ListItem>
                 ))}
               </List>
