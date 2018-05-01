@@ -64,5 +64,8 @@ export default {
   },
   getTrackNotes: function(track){
     return axios.get("/api/notes/track/" + track);
+  },
+  getHorseNotes: function(horse){
+    return axios.get("/api/notes/horse/" + horse);
   }
 };

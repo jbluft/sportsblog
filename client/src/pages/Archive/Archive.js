@@ -52,11 +52,10 @@ class Archive extends Component {
             <br />
 
 
-            <TrackStories track="gulfstream"/>
-            <TrackStories track="churchill"/>
-            <TrackStories track="belmont"/>
-            <TrackStories track="keeneland"/>
-            <TrackStories track="santaanita"/>
+            <TrackStories track="Gulfstream"/>
+            <TrackStories track="Churchill"/>
+            <TrackStories track="Belmont"/>
+            <TrackStories track="SantaAnita"/>
             </Col>
 
 

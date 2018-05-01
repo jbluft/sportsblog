@@ -50,7 +50,7 @@ class Detail extends Component {
                 By {this.state.book.author}
               </p>
               <p>
-                {this.state.book.synopsis}
+                {this.state.book.fullSynopsis}
               </p>
             </article>
           </Col>

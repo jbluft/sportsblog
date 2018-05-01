@@ -18,4 +18,8 @@ router
   .route('/track/:track')
   .get(notesController.findByTrack);
 
+router
+  .route('/horse/:horse')
+  .get(notesController.findByHorse);
+
 module.exports = router;

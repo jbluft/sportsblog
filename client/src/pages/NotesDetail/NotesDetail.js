@@ -13,6 +13,7 @@ class NotesDetail extends Component {
         horse: "",
         author: "",
         synopsis: "",
+        fullSynopsis: "",
         track: ""
       };
     
@@ -29,13 +30,15 @@ class NotesDetail extends Component {
   loadNotes = () => {
     API.getNotes()
       .then(res =>
-        this.setState({ notes: res.data, horse: "", author: "", synopsis: "", track: "" })
+        this.setState({ notes: res.data, horse: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
 
 
   render() {
+
+
     return (
       <Container fluid>
         <Row>
@@ -51,17 +54,21 @@ class NotesDetail extends Component {
                 By {this.state.note.author}
               </p>
               <p>
-                {this.state.note.synopsis}
+                {this.state.note.fullSynopsis}
               </p>
             </article>
+
+            <br />
+
+
           </Col>
           <Col size="md-4">
           <MuiThemeProvider>
             <Subscribe />
             </MuiThemeProvider>
             <br />
-
-          <AllNotes />
+            
+         <AllNotes />
 
 
             </Col>

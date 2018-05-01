@@ -46,11 +46,10 @@ class NotesArchive extends Component {
             <Subscribe />
             </MuiThemeProvider>
             <br />
-            <TrackNotes track="gulfstream"/>
-            <TrackNotes track="churchill"/>
-            <TrackNotes track="belmont"/>
-            <TrackNotes track="keeneland"/>
-            <TrackNotes track="santaanita"/>
+            <TrackNotes track="Gulfstream"/>
+            <TrackNotes track="Churchill"/>
+            <TrackNotes track="Belmont"/>
+            <TrackNotes track="SantaAnita"/>
 
 
 

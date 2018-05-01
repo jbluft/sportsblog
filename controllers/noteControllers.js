@@ -39,5 +39,11 @@ module.exports = {
       .find({track: req.params.track})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findByHorse: function(req, res) {
+    db.Note
+      .find({horse: req.params.horse})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

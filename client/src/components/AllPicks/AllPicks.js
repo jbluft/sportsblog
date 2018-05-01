@@ -43,12 +43,12 @@ class AllPicks extends Component {
       <Container fluid>
         <Row>
         <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
-              <h1>Horse Racing Picks</h1>
+        <Link to={"/archive/"} target="_blank"><h1>Horse Racing Picks</h1></Link>
               {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                    <Link to={"/books/" + book._id} target="_blank">
                       <strong>
                         {book.title}
                       </strong><br />

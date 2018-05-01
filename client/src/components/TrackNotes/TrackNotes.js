@@ -42,11 +42,13 @@ loadNotes = () => {
           <List>
             {this.state.notes.map(note => (
               <ListItem key={note._id}>
-                <h1>{note.track} Notes</h1>
+                <h1>{note.horse}</h1>
                 <Link to={"/notes/" + note._id} target="_blank">
                   <strong>
-                    {note.horse} by {note.author} ({note.track})
+                    By {note.author} ({note.track})
                   </strong>
+                  <br />
+                  {note.synopsis}
                 </Link>
               </ListItem>
             ))}

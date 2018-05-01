@@ -10,7 +10,7 @@ import Paper from 'material-ui/Paper';
 class TrackStories extends Component {
   state = {
     books: [],
-    horse: "",
+    title: "",
     author: "",
     synopsis: "",
     fullSynopsis: "",
@@ -25,7 +25,7 @@ class TrackStories extends Component {
 loadBooks = () => {
     API.getTrackStories(this.props.track)
       .then(res =>
-        this.setState({ books: res.data, horse: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "", fullSynopsis: "", track: "" })
       )
       .catch(err => console.log(err));
   };
@@ -46,9 +46,12 @@ loadBooks = () => {
                 <h1>{book.track} Stories</h1>
                 <Link to={"/books/" + book._id} target="_blank">
                   <strong>
-                    {book.horse} by {book.author} ({book.track})
-                  </strong>
+                    {book.title}
+                     </strong>
                 </Link>
+                <br />
+                by {book.author}<br />
+                {book.synopsis} <Link to={"/books/" + book._id} target="_blank">(Click for full story)</Link>
               </ListItem>
             ))}
           </List>

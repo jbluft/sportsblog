@@ -84,7 +84,7 @@ render() {
   }}
 >
   1
-</Avatar>Lorem ipsum dolor sit amet</div>
+</Avatar>Save Time, Make More Money!</div>
 
 <div>
 <Avatar
@@ -98,7 +98,7 @@ render() {
 >
   2
 </Avatar>
-    Lorem ipsum dolor sit amet</div>
+    Daily Picks for All Major Tracks</div>
 
 <div>
 <Avatar
@@ -112,7 +112,7 @@ render() {
 >
   3
 </Avatar>
-    Lorem ipsum dolor sit amet</div>
+    Horse Notes From All Major Tracks</div>
 
 
 <RaisedButton label="Subscribe" onClick={this.handleOpen} primary={true} style={{ float: 'right' }} />
