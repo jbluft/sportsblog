@@ -3,6 +3,8 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import AllNotes from "../../components/AllNotes";
 import TrackNotes from "../../components/TrackNotes";
+import Subscribe from "../../components/Subscribe";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 class NotesArchive extends Component {
   state = {
@@ -40,8 +42,10 @@ class NotesArchive extends Component {
             </Col>
 
             <Col size="md-4">
-
-
+            <MuiThemeProvider>
+            <Subscribe />
+            </MuiThemeProvider>
+            <br />
             <TrackNotes track="gulfstream"/>
             <TrackNotes track="churchill"/>
             <TrackNotes track="belmont"/>

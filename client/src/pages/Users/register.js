@@ -5,12 +5,26 @@ import { Input, FormBtn } from "../../components/Form";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 
-
+ 
 class Register extends Component {
     state = {
         username: "",
         password: ""
     };
+
+    componentDidMount() {
+        this.loadUser();
+      }
+    
+
+    loadUser = () => {
+        API.getUser()
+          .then(res =>
+            this.setState({ username: "", password: "" })
+          )
+          .catch(err => console.log(err));
+      };
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -26,18 +40,20 @@ class Register extends Component {
                 username: this.state.username,
                 password: this.state.password
             })
-              
-
-                .catch(err => console.log(err));
+            .then(res => this.loadUser())
+            .catch(err => console.log(err));
         }
     };
+
+
+
     render() {
         return (
         <MuiThemeProvider>
             <Container fluid>
         <Row>
         <Col size="md-6">
-        <Paper zDepth={1} style={{ marginTop: 75, padding: 10, display: 'grid' }} >
+        <Paper zDepth={1} style={{ padding: 10, display: 'grid' }} >
         <h1>Register</h1>
         <form>
         <Input
@@ -56,6 +72,7 @@ class Register extends Component {
             <FormBtn
         disabled={!(this.state.username && this.state.password)}
         onClick={this.handleFormSubmit}
+
     >
         Submit User
         </FormBtn>

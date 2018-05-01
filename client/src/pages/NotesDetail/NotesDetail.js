@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import API from "../../utils/API";
 import AllNotes from "../../components/AllNotes";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Subscribe from "../../components/Subscribe";
 
 class NotesDetail extends Component {
     state = {
@@ -54,6 +56,10 @@ class NotesDetail extends Component {
             </article>
           </Col>
           <Col size="md-4">
+          <MuiThemeProvider>
+            <Subscribe />
+            </MuiThemeProvider>
+            <br />
 
           <AllNotes />
 

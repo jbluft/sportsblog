@@ -39,7 +39,10 @@ export default {
     return axios.post("/api/users", userData);
   },
 
-
+  postUserLogin: function(loginCredentials) {
+    console.log(loginCredentials);
+    return axios.post("/api/users/login", loginCredentials);
+  },
 
 
   // gets all notes

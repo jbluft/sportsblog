@@ -5,7 +5,7 @@ import TrackStories from "../../components/TrackStories";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AllPicks from "../../components/AllPicks";
-
+import Subscribe from "../../components/Subscribe";
 
 class Archive extends Component {
   state = {
@@ -45,6 +45,12 @@ class Archive extends Component {
           
             </Col>
             <Col size="md-4">
+
+            <MuiThemeProvider>
+            <Subscribe />
+            </MuiThemeProvider>
+            <br />
+
 
             <TrackStories track="gulfstream"/>
             <TrackStories track="churchill"/>

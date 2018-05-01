@@ -16,12 +16,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-      const user = {
-          usernamame: req.body.username,
-          password: req.body.password
-      };
-      db.User
-      .create(user)
+    // console.log('Correct API function');
+    db.User
+      .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -37,26 +34,18 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  login: function(req, res){
+    db.User
+    .findOne({email: req.body.username})
+    .then(function(dbModel){
+      if(!dbModel){
+        res.json({message: "Incorrect Email!"})
+      } else if (!dbModel.comparePassword(req.body.password)){
+        res.json({message: "Incorrect Password!"})
+      } else {
+        res.json(dbModel)
+      }
+    })
   }
 };
-
-
-
-// const db = require("../models");
-
-// module.exports = {
-//     // register:function (req,res) {
-//     //
-//     // },
-//     register:function(req,res){
-//         res.render("Users/register")
-//     },
-//     create: function(req, res) {
-//         db.User
-//             .create(req.body)
-//             .then(dbModel => res.json(dbModel))
-//     .catch(err => res.status(422).json(err));
-//     }
-
-// };
-
