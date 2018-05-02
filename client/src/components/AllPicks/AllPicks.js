@@ -5,6 +5,7 @@ import { Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
+import { black } from "material-ui/styles/colors";
 
 
 
@@ -60,7 +61,7 @@ class AllPicks extends Component {
 
                   </ListItem>
                 ))}                <br />
-                <Link to={"/archive/"} target="_blank"> See All Picks</Link>
+                <Link to={"/archive/"} target="_blank" style={{ color: black }}> See All Picks</Link>
               </List>
             ) : (
               <h3>No Results to Display</h3>

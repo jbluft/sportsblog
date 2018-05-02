@@ -6,6 +6,7 @@ import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
+import { black } from "material-ui/styles/colors";
 
 
 class AllNotes extends Component {
@@ -81,6 +82,7 @@ class AllNotes extends Component {
 (Click here for full story)</Link>
                   </ListItem>
                 ))}<br />
+                <Link to={"/notesarchive/"} target="_blank" style={{ color: black }}> See All Notes</Link>
 
 
               </List>
